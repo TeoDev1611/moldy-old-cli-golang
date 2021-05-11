@@ -4,11 +4,9 @@ import (
 	"fmt"
 	"os"
 
-	//Community package
+	//Community packages
 	"github.com/spf13/cobra"
 )
-
-var cfgFile string
 
 var asciiMoldy string = `
  _     ____  _    _______  _
@@ -37,6 +35,7 @@ Web Page: www.moldy.github.io
 Made with love in Ecuador and Colombia`,
 }
 
+// Excute the the commands in main go
 func Execute() {
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)

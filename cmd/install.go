@@ -1,20 +1,26 @@
 package cmd
 
 import (
-	"fmt"
-	//Comunnity package
+	pyGo "github.com/DataDog/go-python3"
 	"github.com/fatih/color"
+	GitDetect "github.com/openshift/library-go/pkg/git"
 	"github.com/spf13/cobra"
 )
 
 func tellInstall(module string) {
 	color.Green("Installing the moldy module **" + module + "**")
-	fmt.Println("Me has llamado")
+	gitInstalled := GitDetect.IsGitInstalled()
+	if gitInstalled == true {
+		pyGo.PyRun_AnyFile("gitPython.py")
+	} else {
+		errorGit := "Error git is not installed"
+		color.Red(errorGit)
+	}
 }
 
 // installCmd represents the install command
 var installCmd = &cobra.Command{
-	Use:   "install User/Repository",
+	Use:   "install www.github.com/User/Repository.git",
 	Short: "Install a package of Moldy",
 	Long: `Install the package use.
 	This clone the package in the current folder.`,
@@ -31,14 +37,4 @@ var installCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(installCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// installCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// installCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
