@@ -1,4 +1,4 @@
-# The Moldy OLD CLI 
+# The Moldy OLD CLI WRITED IN GO
 
 If you want colaborate make a fork and pull request
 
